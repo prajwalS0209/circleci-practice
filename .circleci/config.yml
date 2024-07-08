@@ -21,6 +21,7 @@ jobs:
             docker tag my-nginx-app $DOCKERHUB_USERNAME/my-nginx-app:latest
             docker push $DOCKERHUB_USERNAME/my-nginx-app:latest
 
+
   deploy:
     docker:
       - image: circleci/python:3.8  # Base image to run deployment steps
