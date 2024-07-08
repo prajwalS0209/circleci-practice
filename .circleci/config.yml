@@ -1,58 +1,19 @@
-version: 2.1
+
+Copy code
+version: 2.1  # CircleCI configuration version
+
 jobs:
- build:
+  hello_world_job:
     docker:
-      - image: cmgi/docker:latest
-
+      - image: circleci/python:3.9  # Example Docker image with Python 3.9
     steps:
-      - checkout  # Check out the code from your repositor
-
+      - checkout  # Checkout your source code repository
       - run:
-          name: Build Docker image
-          command: echo "$DOCKERHUB_PASSWORD
-
-      # - run:
-      #     name: logging in to docker account
-      #     command: | 
-      #       docker login -u prajwals0209 -p 022002Praju@9902
-
-      # - run:
-      #     name: Push Docker image to Docker Hub
-      #     command: |
-      #       docker push prajwlas0209/circlecitest:latest
-
-      # - run:
-      #     name: printing the success message 
-      #     command: |
-      #       echo "successfully build and pushed the image "
-
-  # deploy:
-  #   docker:
-  #     - image: circleci/python:3.8  # Base image to run deployment steps
-  #   steps:
-  #     - checkout  # Check out the code from your repository
-
-  #     - run:
-  #         name: Install kubectl
-  #         command: |
-  #           curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
-  #           chmod +x ./kubectl
-  #           sudo mv ./kubectl /usr/local/bin/kubectl
-
-  #     - run:
-  #         name: Configure kubectl
-  #         command: |
-  #           mkdir -p $HOME/.kube
-  #           echo $KUBECONFIG_CONTENT > $HOME/.kube/config
-
-  #     - run:
-  #         name: Deploy to Kubernetes
-  #         command: kubectl apply -f k8s/deployment.yaml
-
+          name: Print Hello, World!
+          command: echo "Hello, World!"
+          
 workflows:
-  build_and_deploy:
+  version: 2
+  hello_world_workflow:
     jobs:
-      - build
-      # - deploy:
-      #     requires:
-      #       - build
+      - hello_world_job
