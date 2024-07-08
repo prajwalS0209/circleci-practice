@@ -5,9 +5,7 @@ jobs:
       - image: cmgi/docker:latest
 
     steps:
-      - checkout  # Check out the code from your repository
-      - setup_remote_docker:
-          version: 24.0.7
+      - checkout  # Check out the code from your repositor
 
       - run:
           name: Build Docker image
