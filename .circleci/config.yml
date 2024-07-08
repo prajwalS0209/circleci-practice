@@ -7,10 +7,8 @@ jobs:
       - image: circleci/python:3.9  # Example Docker image with Python 3.9
     steps:
       - checkout  # Checkout your source code repository
-      - run:
-          name: setting docker 
-          command: |
-            version: 20.10.7
+      - setup_remote_docker:
+          version: 20.10.7
 
       - run:
           name: creating the image 
