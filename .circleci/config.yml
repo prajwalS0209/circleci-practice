@@ -4,16 +4,16 @@ version: 2.1  # CircleCI configuration version
 jobs:
   build_and_push :
     docker:
-      - image: circleci/nginx  # Example Docker image with Python 3.9
+      - image: circleci/python:3.9  # Example Docker image with Python 3.9
     steps:
       - checkout  # Checkout your source code repository
       - run:
           name: creating the image 
-          command: docker build image -t foobar .
+          command: |
+            docker build -t prajwlas0209/circle-test:latest  .
+            echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
+            docker push prajwlas0209/circle-test:latest
 
-      - run:
-          name: printing the message
-          command: echo "docker image built sucessfully"
           
 workflows:
   version: 2
