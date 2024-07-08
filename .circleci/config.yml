@@ -1,9 +1,9 @@
 version: 2.1
 jobs:
-  build:
+ build:
     docker:
       - image: circleci/docker:latest
-      
+
     steps:
       - checkout  # Check out the code from your repository
       - setup_remote_docker:
@@ -16,7 +16,7 @@ jobs:
       - run:
           name: logging in to docker account
           command: | 
-            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            export DOCKERHUB_PASSWORD="022002Praju@9902" | docker login -u prajwals0209 -p $DOCKERHUB_PASSWORD -stdin
 
       - run:
           name: Push Docker image to Docker Hub
