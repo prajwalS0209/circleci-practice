@@ -9,22 +9,22 @@ jobs:
 
       - run:
           name: Build Docker image
-          command: docker build -t circlecitest .
+          command: echo "$DOCKERHUB_PASSWORD
 
-      - run:
-          name: logging in to docker account
-          command: | 
-           docker login -u prajwals0209 -p 022002Praju@9902
+      # - run:
+      #     name: logging in to docker account
+      #     command: | 
+      #       docker login -u prajwals0209 -p 022002Praju@9902
 
-      - run:
-          name: Push Docker image to Docker Hub
-          command: |
-            docker push prajwlas0209/circlecitest:latest
+      # - run:
+      #     name: Push Docker image to Docker Hub
+      #     command: |
+      #       docker push prajwlas0209/circlecitest:latest
 
-      - run:
-          name: printing the success message 
-          command: |
-            echo "successfully build and pushed the image "
+      # - run:
+      #     name: printing the success message 
+      #     command: |
+      #       echo "successfully build and pushed the image "
 
   # deploy:
   #   docker:
