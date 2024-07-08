@@ -14,7 +14,7 @@ jobs:
       - run:
           name: logging in to docker account
           command: | 
-            export DOCKERHUB_PASSWORD="022002Praju@9902" | docker login -u prajwals0209 -p $DOCKERHUB_PASSWORD -stdin
+           docker login -u prajwals0209 -p 022002Praju@9902
 
       - run:
           name: Push Docker image to Docker Hub
