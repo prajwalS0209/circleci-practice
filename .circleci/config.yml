@@ -1,5 +1,4 @@
 
-Copy code
 version: 2.1  # CircleCI configuration version
 
 jobs:
