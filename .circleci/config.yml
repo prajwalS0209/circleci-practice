@@ -4,7 +4,7 @@ version: 2.1  # CircleCI configuration version
 jobs:
   build_and_push :
     docker:
-      - image: circleci/docker  # Example Docker image with Python 3.9
+      - image: circleci/nginx  # Example Docker image with Python 3.9
     steps:
       - checkout  # Checkout your source code repository
       - run:
@@ -13,7 +13,7 @@ jobs:
 
       - run:
           name: printing the message
-          command: echo "docker build uo sucessfully"
+          command: echo "docker image built sucessfully"
           
 workflows:
   version: 2
