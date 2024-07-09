@@ -1,31 +1,30 @@
 version: 2.1  # CircleCI configuration version
 
 executors:
-  dockerTest:
+  docker_push:
     environment:
-     DOCKER_USERNAME: prajwalhugar33@gmail.com
-     DOCKER-PASSWORD: 022002Praju@9902
-   docker:
-    - image: cimg/node:22.4.0  
-      
+      DOCKER_USERNAME: prajwalhugar33@gmail.com
+      DOCKER_PASSWORD: 022002Praju@9902
+    docker:
+      - image: cimg/node:22.4.0
+
 jobs:
   test:
-    executor: dockerTest
+    executor: docker_push
     steps:
       - checkout  # Checkout your source code repository
-      - run: 
+      - run:
           name: Building the image 
           command: docker image build -t prajwlas0209/circle-test .
       - run:
-          name: logging to docker 
-          command: docker login -u $DOCKER_USERNAME -p $DOCKER-PASSWORD 
+          name: Logging to Docker Hub 
+          command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - run:
-          name: pushing to docker hub
-          command: docker push -t prajwlas0209/circle-test:v1 
-                
-          
+          name: Pushing to Docker Hub
+          command: docker push prajwlas0209/circle-test:v1
+
 workflows:
   version: 2
-  docker_push_test:
+  hello_world_workflow:
     jobs:
       - test
