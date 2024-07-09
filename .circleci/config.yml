@@ -16,7 +16,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Building the image 
-          command: docker image build -t prajwlas0209/circle-test .
+          command: docker image build -t prajwlas0209/circle-test:v1 .
       - run:
           name: Logging to Docker Hub 
           command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
