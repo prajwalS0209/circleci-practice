@@ -6,13 +6,13 @@ executors:
       - image: cimg/node:22.4.0  
       
 jobs:
-  test:
+  build:
     executor: test-exec
-      steps:
-        - checkout  # Checkout your source code repository
-        - run: | 
-           echo "hello world"
-           node --version
+    steps:
+      - checkout  # Checkout your source code repository
+      - run: | 
+         echo "hello world"
+         node --version
           
 workflows:
   version: 2
