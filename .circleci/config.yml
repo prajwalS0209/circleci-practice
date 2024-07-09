@@ -27,9 +27,6 @@ jobs:
           name: Logging to Docker Hub 
           command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - run:
-          name: Logging to Docker Hub 
-          command: docker rmi prajwlas0209/circle-test:latest
-      - run:
           name: Pushing to Docker Hub
           command: docker push prajwlas0209/circle-test:latest
 
