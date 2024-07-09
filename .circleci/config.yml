@@ -9,23 +9,33 @@ executors:
       - image: cimg/node:22.4.0
 
 jobs:
-  test:
+  git_checkout:
     executor: docker_push
     steps:
-      - checkout  # Checkout your source code repository
-      - setup_remote_docker
-      - run:
-          name: Building the image 
-          command: docker image build -t prajwlas0209/circle-test:v1 .
-      - run:
-          name: Logging to Docker Hub 
-          command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-      - run:
-          name: Pushing to Docker Hub
-          command: docker push prajwlas0209/circle-test:v1
+    - checkout 
+
+  settingup_docker:
+    executor: docker_push
+    steps: 
+      - setup_remote_docker 
+
+  buildandpush_docker:
+    executor: docker_push
+    steps: 
+    - run:
+        name: Building the image 
+        command: docker image build -t prajwlas0209/circle-test:v1 .
+    - run:
+        name: Logging to Docker Hub 
+        command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - run:
+        name: Pushing to Docker Hub
+        command: docker push prajwlas0209/circle-test:v1
 
 workflows:
   version: 2
   hello_world_workflow:
     jobs:
-      - test
+      - git_checkout
+      - settingup_docker
+      - buildandpush_docker
