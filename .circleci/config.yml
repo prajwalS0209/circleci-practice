@@ -20,31 +20,26 @@ jobs:
     steps:
     - checkout 
 
-  settingup_docker:
+  docker_buildandpush:
     executor: docker_push
     steps: 
       - setup_remote_docker 
-
-  buildandpush_docker:
-    executor: docker_push
-    steps: 
-    - run:
-        name: Building the image 
-        command: docker image build -t prajwlas0209/circle-test:latest .
-    - run:
-        name: Logging to Docker Hub 
-        command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    - run:
-        name: Logging to Docker Hub 
-        command: docker rmi prajwlas0209/circle-test:latest
-    - run:
-        name: Pushing to Docker Hub
-        command: docker push prajwlas0209/circle-test:latest
+      - run:
+          name: Building the image 
+          command: docker image build -t prajwlas0209/circle-test:latest .
+      - run:
+          name: Logging to Docker Hub 
+          command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run:
+          name: Logging to Docker Hub 
+          command: docker rmi prajwlas0209/circle-test:latest
+      - run:
+          name: Pushing to Docker Hub
+          command: docker push prajwlas0209/circle-test:latest
 
   deploy:
     executor: kubernetes_executor
     steps:
-          - checkout
           - run:
               name: Configure kubectl for specific server
               command: |
@@ -61,10 +56,9 @@ workflows:
   hello_world_workflow:
     jobs:
       - git_checkout
-      - settingup_docker
-      - buildandpush_docker:
+      - docker_buildandpush:
             requires:
-              - settingup_docker
+              - git_checkout
       - deploy:
             requires:
-              - buildandpush_docker
+              - docker_buildandpush
