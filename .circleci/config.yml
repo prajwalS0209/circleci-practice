@@ -2,24 +2,17 @@
 version: 2.1  # CircleCI configuration version
 
 jobs:
-  build_and_push :
+  test:
     docker:
-      - image: circleci/python:3.9  # Example Docker image with Python 3.9
+      - image: cimg/node:22.4.0  
     steps:
       - checkout  # Checkout your source code repository
-      - setup_remote_docker:
-          version: 20.10.7
-
-      - run:
-          name: creating the image 
-          command: |
-            docker build -t prajwlas0209/circle-test:latest  .
-            docker login -u prajwalhugar33@gmail.com -p $DOCKERHUB_PASSWORD
-            docker push prajwlas0209/circle-test:latest
-
+      - run: | 
+         echo "hello world"
+         node --version
           
 workflows:
   version: 2
   hello_world_workflow:
     jobs:
-      - build_and_push
+      - test
