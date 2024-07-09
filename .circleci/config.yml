@@ -1,17 +1,19 @@
 
 version: 2.1  # CircleCI configuration version
-
+executors:
+  test-exec:
+    environment:
+      IMAGE_NAME:
+     docker:
+      - image: cimg/node:22.4.0  
+      
 jobs:
   test:
-    docker:
-      - image: cimg/node:22.4.0  
-    steps:
+   test-exec:
       - checkout  # Checkout your source code repository
       - run: | 
          echo "hello world"
          node --version
-      - run: | 
-          kubectl version
           
 workflows:
   version: 2
