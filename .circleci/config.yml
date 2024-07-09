@@ -6,7 +6,7 @@ executors:
       - image: cimg/node:22.4.0  
       
 jobs:
-  build:
+  test:
     executor: test-exec
     steps:
       - checkout  # Checkout your source code repository
