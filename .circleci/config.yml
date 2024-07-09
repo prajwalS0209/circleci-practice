@@ -18,7 +18,7 @@ jobs:
           steps: docker image build -t prajwlas0209/circle-test .
       - run:
           name: logging to docker 
-          run: docker login -u $ DOCKER_USERNAME -p $DOCKER-PASSWORD 
+          run: docker login -u $DOCKER_USERNAME -p $DOCKER-PASSWORD 
       - run:
           name: pushing to docker hub
           run: docker push -t prajwlas0209/circle-test:v1 
