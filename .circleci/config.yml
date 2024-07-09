@@ -15,13 +15,13 @@ jobs:
       - checkout  # Checkout your source code repository
       - run: 
           name: Building the image 
-          steps: docker image build -t prajwlas0209/circle-test .
+          command: docker image build -t prajwlas0209/circle-test .
       - run:
           name: logging to docker 
-          steps: docker login -u $DOCKER_USERNAME -p $DOCKER-PASSWORD 
+          command: docker login -u $DOCKER_USERNAME -p $DOCKER-PASSWORD 
       - run:
           name: pushing to docker hub
-          steps: docker push -t prajwlas0209/circle-test:v1 
+          command: docker push -t prajwlas0209/circle-test:v1 
                 
           
 workflows:
