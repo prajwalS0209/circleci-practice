@@ -58,6 +58,12 @@ workflows:
   hello_world_workflow:
     jobs:
       - git_checkout
-      - settingup_docker
-      - buildandpush_docker
-      - deploy
+      - settingup_docker:
+            requires:
+              - git_checkout
+      - buildandpush_docker:
+            requires:
+              - settingup_docker
+      - deploy:
+            requires:
+              - buildandpush_docker
