@@ -37,6 +37,7 @@ jobs:
           - run:
               name: Configure kubectl for specific server
               command: |
+                chown -R $USER:$USER /path/to/directory
                 sudo mkdir -p $HOME/.kube
                 sudo echo $KUBECONFIG_DATA | base64 --decode > $KUBECONFIG
           - run:
