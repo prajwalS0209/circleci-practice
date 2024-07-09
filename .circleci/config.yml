@@ -34,16 +34,21 @@ jobs:
   deploy:
     executor: kubernetes_executor
     steps:
-          - run:
-              name: Configure kubectl for specific server
-              command: |
-                chown -R $USER:$USER  $HOME/.kube
-                sudo mkdir -p $HOME/.kube
-                sudo echo $KUBECONFIG_DATA | base64 --decode > $KUBECONFIG
-          - run:
-              name: Update Kubernetes Deployment
-              command: |
-                kubectl set image deployment.apps/sample-deploy my-container=prajwlas0209/circle-test:latest
+      - checkout
+      - run:
+          name: Create kubeconfig directory
+          command: |
+            mkdir -p /home/circleci/.kube
+            chmod 700 /home/circleci/.kube
+      - run:
+          name: Configure kubectl for specific server
+          command: |
+            echo $KUBECONFIG_DATA | base64 --decode > /home/circleci/.kube/config
+            chmod 600 /home/circleci/.kube/config
+      - run:
+          name: Update Kubernetes Deployment
+          command: |
+            kubectl set image deployment/my-deployment my-container=prajwlas0209/circle-test:v1
 
 
 workflows:
