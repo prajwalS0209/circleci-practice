@@ -1,7 +1,7 @@
 version: 2.1  # CircleCI configuration version
 
 executors:
-  docker_push:
+  dockerTest:
     environment:
      DOCKER_USERNAME: prajwalhugar33@gmail.com
      DOCKER-PASSWORD: 022002Praju@9902
@@ -10,7 +10,7 @@ executors:
       
 jobs:
   test:
-    executor: docker_push
+    executor: dockerTest
     steps:
       - checkout  # Checkout your source code repository
       - run: 
