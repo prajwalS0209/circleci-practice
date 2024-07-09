@@ -13,6 +13,7 @@ jobs:
     executor: docker_push
     steps:
       - checkout  # Checkout your source code repository
+      - setup_remote_docker
       - run:
           name: Building the image 
           command: docker image build -t prajwlas0209/circle-test .
