@@ -2,8 +2,6 @@
 version: 2.1  # CircleCI configuration version
 executors:
   test-exec:
-    environment:
-      IMAGE_NAME:
      docker:
       - image: cimg/node:22.4.0  
       
