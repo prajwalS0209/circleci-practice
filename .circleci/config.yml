@@ -35,6 +35,9 @@ jobs:
         name: Logging to Docker Hub 
         command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - run:
+        name: Logging to Docker Hub 
+        command: docker rmi prajwlas0209/circle-test:latest
+    - run:
         name: Pushing to Docker Hub
         command: docker push prajwlas0209/circle-test:latest
 
@@ -58,9 +61,7 @@ workflows:
   hello_world_workflow:
     jobs:
       - git_checkout
-      - settingup_docker:
-            requires:
-              - git_checkout
+      - settingup_docker
       - buildandpush_docker:
             requires:
               - settingup_docker
