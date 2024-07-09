@@ -50,7 +50,7 @@ jobs:
           - run:
               name: Update Kubernetes Deployment
               command: |
-                kubectl set image deployment/my-deployment my-container=prajwlas0209/circle-test:v1
+                kubectl set image deployment.apps/sample-deploy my-container=prajwlas0209/circle-test:latest
 
 
 workflows:
