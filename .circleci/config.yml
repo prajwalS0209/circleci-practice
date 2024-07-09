@@ -15,14 +15,10 @@ executors:
         KUBECONFIG: /home/circleci/.kube/config
 
 jobs:
-  git_checkout:
-    executor: docker_push
-    steps:
-    - checkout 
-
-  docker_buildandpush:
+  buildandpush:
     executor: docker_push
     steps: 
+      - checkout 
       - setup_remote_docker 
       - run:
           name: Building the image 
@@ -55,10 +51,7 @@ workflows:
   version: 2
   hello_world_workflow:
     jobs:
-      - git_checkout
-      - docker_buildandpush:
-            requires:
-              - git_checkout
+      - buildandpush
       - deploy:
             requires:
-              - docker_buildandpush
+              - buildandpush
