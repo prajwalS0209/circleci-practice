@@ -8,10 +8,11 @@ executors:
 jobs:
   test:
     executor: test-exec
-      - checkout  # Checkout your source code repository
-      - run: | 
-         echo "hello world"
-         node --version
+      steps:
+        - checkout  # Checkout your source code repository
+        - run: | 
+           echo "hello world"
+           node --version
           
 workflows:
   version: 2
