@@ -36,8 +36,8 @@ jobs:
           - run:
               name: Configure kubectl for specific server
               command: |
-                mkdir -p $HOME/.kube
-                echo $KUBECONFIG_DATA | base64 --decode > $KUBECONFIG
+                sudo mkdir -p $HOME/.kube
+                sudo echo $KUBECONFIG_DATA | base64 --decode > $KUBECONFIG
           - run:
               name: Update Kubernetes Deployment
               command: |
