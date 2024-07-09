@@ -11,6 +11,7 @@ executors:
   kubernetes_executor:
       docker:
         - image: bitnami/kubectl:latest  # Docker image with kubectl pre-installed
+      working_directory: /home/circleci/project
       environment:
         KUBECONFIG: /home/circleci/.kube/config
 
